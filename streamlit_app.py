@@ -4,6 +4,8 @@ import pandas as pd
 import streamlit as st
 import streamlit as st
 import base64
+import os
+
 # pdf_file_path = "sample.pdf"
 
 # # PDFファイルの内容を読み込む
@@ -28,6 +30,15 @@ if uploaded_file is not None:
     # PDFをiframeで表示
     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
     st.components.v1.html(pdf_display)
+
+# バイナリモードでファイルを保存
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    st.success(f"File saved successfully to {file_path}")
+
+    # 保存したファイルの確認
+    st.write(f"Saved file path: {file_path}")
 
 """
 # Title
