@@ -2,6 +2,32 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
+import streamlit as st
+import base64
+pdf_file_path = "sample.pdf"
+
+# PDFファイルの内容を読み込む
+with open(pdf_file_path, "rb") as pdf_file:
+    pdf_data = pdf_file.read()
+
+# ダウンロードボタンを作成
+st.download_button(
+    label="Download PDF",
+    data=pdf_data,
+    file_name="sample.pdf",
+    mime="application/pdf"
+)
+
+# ファイルアップロードウィジェットを作成
+uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
+
+if uploaded_file is not None:
+    # PDFファイルを読み込む
+    base64_pdf = base64.b64encode(uploaded_file.read()).decode('utf-8')
+
+    # PDFをiframeで表示
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+    st.components.v1.html(pdf_display)
 
 """
 # Title
