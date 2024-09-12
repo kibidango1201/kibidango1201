@@ -31,5 +31,13 @@ if uploaded_file is not None:
     # 保存成功メッセージ
     st.success(f"File saved successfully to {file_path}")
 
-    # 保存したファイルの確認
-    st.write(f"Saved file path: {file_path}")
+    # ダウンロードボタンを作成
+    with open(file_path, "rb") as f:
+        pdf_data = f.read()
+
+    st.download_button(
+        label="Download PDF",
+        data=pdf_data,
+        file_name=uploaded_file.name,
+        mime="application/pdf"
+    )
