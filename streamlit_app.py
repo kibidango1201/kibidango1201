@@ -4,19 +4,19 @@ import pandas as pd
 import streamlit as st
 import streamlit as st
 import base64
-pdf_file_path = "sample.pdf"
+# pdf_file_path = "sample.pdf"
 
-# PDFファイルの内容を読み込む
-with open(pdf_file_path, "rb") as pdf_file:
-    pdf_data = pdf_file.read()
+# # PDFファイルの内容を読み込む
+# with open(pdf_file_path, "rb") as pdf_file:
+#     pdf_data = pdf_file.read()
 
-# ダウンロードボタンを作成
-st.download_button(
-    label="Download PDF",
-    data=pdf_data,
-    file_name="sample.pdf",
-    mime="application/pdf"
-)
+# # ダウンロードボタンを作成
+# st.download_button(
+#     label="Download PDF",
+#     data=pdf_data,
+#     file_name="sample.pdf",
+#     mime="application/pdf"
+# )
 
 # ファイルアップロードウィジェットを作成
 uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
